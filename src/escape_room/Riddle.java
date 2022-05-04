@@ -40,6 +40,10 @@ public class Riddle implements Comparable<Riddle> {
 		return compareResult;
 
 	}
+	
+	public boolean tryAnswer (String answer) {
+		return false;
+	}
 
 //	public String getDescription() {
 //		return "Test (Riddle-Desc.)";

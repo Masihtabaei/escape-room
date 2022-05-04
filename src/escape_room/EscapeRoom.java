@@ -3,17 +3,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
 
-abstract class Riddle implements Comparable<Riddle>{
-	public int difficulty;
-	
-	public int compare(Riddle r1,Riddle r2){
-		return r1.difficulty-r2.difficulty;   
-	}
-	
-	abstract boolean tryRiddle(String answer);
-}
-
-
 public class EscapeRoom {
 
 	public int id;
@@ -55,7 +44,7 @@ public class EscapeRoom {
 	//#TODO: check if implementing this method here even makes sense
 	public void tryRiddle(Riddle riddle, String answer) {
 		Riddle r = this.riddles.get(this.riddles.indexOf(riddle));
-		if (r.tryRiddle(answer)) {
+		if (r.tryAnswer(answer)) {
 			
 			int i = pickRandomEmptyPart();
 			if(i >= 0) {
