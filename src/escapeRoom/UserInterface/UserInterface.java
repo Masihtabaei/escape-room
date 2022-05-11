@@ -71,7 +71,7 @@ public interface UserInterface {
 	 * This method can be used to show the current riddle.
 	 * </p>
 	 * 
-	 * @param riddle (a Riddle-object)
+	 * @param riddle (a Riddle object)
 	 */
 	void showTheRiddle(Riddle riddle);
 
@@ -91,7 +91,9 @@ public interface UserInterface {
 	 * to the input of the user)
 	 * </p>
 	 * 
-	 * @param message(a String-object)
+	 * @param message(a String object)
 	 */
 	void showTheResultOfAnAttempt(String message);
+
+	void showTheResultOfTheEscapeRoom(String message);
 }

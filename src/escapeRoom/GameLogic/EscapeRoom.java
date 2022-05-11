@@ -12,4 +12,12 @@ public class EscapeRoom {
 	public String getDescription() {
 		return "Test-Desc.";
 	}
+
+	public String getGameOverMessage() {
+		return "";
+	}
+
+	public Riddle getCurrentRiddle() {
+		return null;
+	}
 }

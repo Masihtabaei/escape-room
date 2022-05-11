@@ -100,4 +100,10 @@ public class InOut implements UserInterface {
 		System.out.println("Result: " + message);
 	}
 
+	@Override
+	public void showTheResultOfTheEscapeRoom(String message) {
+		System.out.println("** " + message + " **");
+
+	}
+
 }
