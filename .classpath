@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-17">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/juliu/eclipse-workspace/Escape_Room_S22/jackson-core-2.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/juliu/eclipse-workspace/Escape_Room_S22/jackson-databind-2.13.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/juliu/eclipse-workspace/Escape_Room_S22/jackson-annotations-2.13.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

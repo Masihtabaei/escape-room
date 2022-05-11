@@ -4,7 +4,7 @@ public class Riddle implements Comparable<Riddle> {
 
 	
 	protected String description;
-	protected String correctAnswer;
+	public String correctAnswer;
 	protected Difficulty difficulty;
 
 	public Riddle(String description, String correctAnswer, Difficulty difficulty) {
@@ -39,6 +39,14 @@ public class Riddle implements Comparable<Riddle> {
 
 		return compareResult;
 
+	}
+	
+	public boolean tryAnswer (String answer) {
+		if (answer.equals(this.correctAnswer)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 //	public String getDescription() {

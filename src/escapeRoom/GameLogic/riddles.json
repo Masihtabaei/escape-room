@@ -1,0 +1,20 @@
+{
+  "1" :
+  {
+    "description" : "wieso",
+    "correctAnswer" : "dieso",
+    "difficulty" : "EASY"
+  },
+  "2" :
+  {
+    "description" : "weshalb",
+    "correctAnswer" : "deshalb",
+    "difficulty" : "MEDIUM"
+  },
+  "3" :
+  {
+    "description" : "warum",
+    "correctAnswer" : "darum",
+    "difficulty" : "HARD"
+  }
+}
