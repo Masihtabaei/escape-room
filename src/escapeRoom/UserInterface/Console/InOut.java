@@ -13,6 +13,10 @@ public class InOut implements UserInterface {
 
 	private Scanner scanner;
 
+	public InOut() {
+		scanner = new Scanner(System.in);
+	}
+
 	@Override
 	public void showTheTitle(String title) {
 		System.out.println("** Welcome to " + title + " **");
@@ -98,6 +102,17 @@ public class InOut implements UserInterface {
 	@Override
 	public void showTheResultOfAnAttempt(String message) {
 		System.out.println("Result: " + message);
+	}
+
+	@Override
+	public void showTheResultOfTheEscapeRoom(String message) {
+		System.out.println("** " + message + " **");
+
+	}
+
+	@Override
+	public void showTheFinalPassword(String finalPassword) {
+		System.out.println("Final Password:" + finalPassword);
 	}
 
 }
