@@ -1,5 +1,6 @@
 package escapeRoom.GameLogic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import escapeRoom.UserInterface.UserInterface;
@@ -22,25 +23,55 @@ public class Game {
 	private List<EscapeRoom> escapeRooms;
 	private EscapeRoom currentEscapeRoom;
 
+	/**
+	 * Constructor to initialize the attributes
+	 * 
+	 * @param title(a String-object)
+	 */
 	public Game(String title) {
 		this.title = title;
-	}
-
-	/**
-	 * <p>
-	 * This method can be used to initialize the Game.
-	 * </p>
-	 * 
-	 */
-	public void init() {
+		escapeRooms = new ArrayList<EscapeRoom>();
 		userInterface = new InOut();
+		Riddle firstRiddle = new Riddle("In which year did the corona-crisis beginn?", "2020", Difficulty.EASY);
+		Riddle secondRiddle = new Riddle("In which year did Russia attack Ukraeine?", "2022", Difficulty.EASY);
+		Riddle thirdRiddle = new Riddle("Which city is the capital of Germany?", "Berlin", Difficulty.EASY);
+		Riddle fourthRiddle = new Riddle("What does Bier mean?", "Beer", Difficulty.EASY);
+		Riddle fifthRiddle = new Riddle("What is your name?", "Masih", Difficulty.EASY);
+		Riddle sixthRiddle = new Riddle("Lqirupdwln", "Informatik", Difficulty.EASY);
+		Riddle seventhRiddle = new Riddle("Mdyd", "Java", Difficulty.EASY);
+		Riddle eightRiddle = new Riddle("Pdwkhpdwln", "Mathematik", Difficulty.MEDIUM);
+		Riddle ninthRiddle = new Riddle("Uhfkqhudufklwhnwxu", "Rechnerarchitektur", Difficulty.HARD);
+
+		ArrayList<Riddle> firstListOfRiddles = new ArrayList<Riddle>();
+		ArrayList<Riddle> secondListOfRiddles = new ArrayList<Riddle>();
+
+		firstListOfRiddles.add(firstRiddle);
+		firstListOfRiddles.add(secondRiddle);
+		firstListOfRiddles.add(thirdRiddle);
+		firstListOfRiddles.add(fourthRiddle);
+		firstListOfRiddles.add(fifthRiddle);
+
+		secondListOfRiddles.add(sixthRiddle);
+		secondListOfRiddles.add(seventhRiddle);
+		secondListOfRiddles.add(eightRiddle);
+		secondListOfRiddles.add(ninthRiddle);
+
+		EscapeRoom firstEscaoeRoom = new EscapeRoom(0, "General", "General questions", "You won!", "Game Over!",
+				"Casaer", 3, firstListOfRiddles);
+
+		EscapeRoom secondEscaoeRoom = new EscapeRoom(1, "Computer Science", "CS related questions", "You won!",
+				"Game Over!", "Casaer", 3, secondListOfRiddles);
+
+		escapeRooms.add(firstEscaoeRoom);
+		escapeRooms.add(secondEscaoeRoom);
+
 		userInterface.showTheTitle(title);
 		begin();
 	}
 
 	/**
 	 * <p>
-	 * 
+	 * This method can be used to begin playing the game or to exit the game.
 	 * </p>
 	 * 
 	 */
@@ -54,7 +85,7 @@ public class Game {
 
 	/**
 	 * <p>
-	 * 
+	 * This method can be used to re-/start the game.
 	 * </p>
 	 * 
 	 */
@@ -67,7 +98,7 @@ public class Game {
 
 	/**
 	 * <p>
-	 * This method can be used...
+	 * This method can be used prompt the user to select an escape-room.
 	 * </p>
 	 * 
 	 */
@@ -78,8 +109,7 @@ public class Game {
 														// 'currentEscapeRoom'
 				if (escapeRoom.getId() == inputId)
 					currentEscapeRoom = escapeRoom;
-			startTheEscapeRoom();
-			solveTheEcapeRoom();
+			playTheGame();
 		} catch (InvalidInputException e) {
 			e.printStackTrace();
 		}
@@ -87,32 +117,52 @@ public class Game {
 
 	/**
 	 * <p>
-	 * This method can be used...
+	 * This method can get used to check the answer.
 	 * </p>
 	 * 
+	 * @param answer
+	 * @return boolean
 	 */
-	private void solveTheEcapeRoom() {
-		String answer = userInterface.promptForAnswer();
-		if (answer.equals(currentEscapeRoom.getCurrentRiddle().correctAnswer))
-			userInterface.showTheResultOfAnAttempt("Your answer is correct. You solved this riddle!");
+	private boolean checkTheAnswer(String answer) {
+		if (answer.equalsIgnoreCase(currentEscapeRoom.getCurrentRiddle().getCorrectAnswer()))
+			return true;
 		else
-			userInterface.showTheResultOfAnAttempt("Your answer is incorrect. Your team has: "
-					+ team.getLeftChancesForCurrentEscapeRoom() + " chances left.");
-		if (team.getLeftChancesForCurrentEscapeRoom() == 0) { // part of game class or escapeRoom class???
-			currentEscapeRoom.getGameOverMessage();
-			begin();
-		}
-
+			return false;
 	}
 
 	/**
 	 * <p>
-	 * This method can be used to
+	 * This method can be used to prompt the user to solve the escape-room.
 	 * </p>
 	 * 
 	 */
-	private void startTheEscapeRoom() {
-		userInterface.showTheRiddle(currentEscapeRoom.getCurrentRiddle());
+	private void playTheGame() {
+		Riddle currentRiddle = currentEscapeRoom.getCurrentRiddle();
+		if (currentRiddle != null) {
+			userInterface.showTheRiddle(currentRiddle);
+			String answer = userInterface.promptForAnswer();
+			boolean isCorrect = checkTheAnswer(answer);
+			if (isCorrect) {
+				userInterface.showTheResultOfAnAttempt("Congrat. Solved!");
+				currentEscapeRoom.getCurrentRiddle().setIsSolved(true);
+				playTheGame();
+			} else {
+				userInterface.showTheResultOfAnAttempt("Oops!");
+				if (team.getLeftChancesForCurrentEscapeRoom() == 1) {
+					userInterface.showTheResultOfTheEscapeRoom(currentEscapeRoom.getGameOverMessage());
+					System.exit(0);
+				} else {
+					team.decrementLeftChancesForCurrentEscapeRoom();
+					userInterface.showAnError("Try it again :)");
+					playTheGame();
+				}
+			}
+		} else {
+			userInterface.showTheResultOfTheEscapeRoom(currentEscapeRoom.getWinMessage());
+			userInterface.showTheFinalPassword(currentEscapeRoom.getFinalPassword());
+			System.exit(0);
+		}
+
 	}
 
 	/**
@@ -135,11 +185,5 @@ public class Game {
 	private void showTheEscapeRooms() {
 		userInterface.showTheEscapeRooms(escapeRooms);
 	}
-
-	/*
-	 * private void showTheResultOfTheEscapeRoom(String message) {
-	 * 
-	 * }
-	 */
 
 }

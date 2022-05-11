@@ -14,6 +14,7 @@ public class Riddle implements Comparable<Riddle> {
 	protected String description;
 	protected String correctAnswer;
 	protected Difficulty difficulty;
+	protected boolean isSolved;
 
 	/**
 	 * <p>
@@ -29,6 +30,10 @@ public class Riddle implements Comparable<Riddle> {
 		this.description = description;
 		this.correctAnswer = correctAnswer;
 		this.difficulty = difficulty;
+	}
+
+	public boolean checkIfSolved() {
+		return isSolved;
 	}
 
 	/**
@@ -62,6 +67,10 @@ public class Riddle implements Comparable<Riddle> {
 	 */
 	public Difficulty getDifficulty() {
 		return difficulty;
+	}
+
+	public void setIsSolved(boolean flag) {
+		isSolved = flag;
 	}
 
 	@Override

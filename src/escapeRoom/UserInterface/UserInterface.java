@@ -96,4 +96,6 @@ public interface UserInterface {
 	void showTheResultOfAnAttempt(String message);
 
 	void showTheResultOfTheEscapeRoom(String message);
+
+	void showTheFinalPassword(String finalPassword);
 }
