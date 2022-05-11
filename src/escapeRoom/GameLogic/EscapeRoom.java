@@ -28,6 +28,7 @@ public class EscapeRoom {
 	public int riddlesAmount;
 	private Vector<Riddle> riddles;
 	private int currentRiddleIndex;
+	private String riddlesFile;
 
 	public EscapeRoom(
 			int id,
@@ -36,7 +37,8 @@ public class EscapeRoom {
 			String winMessage,
 			String gameOverMessage,
 			int maximumChances,
-			int riddlesAmount) {
+			int riddlesAmount,
+			String riddlesFile) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -45,6 +47,7 @@ public class EscapeRoom {
 		this.gameOverMessage = gameOverMessage;
 		this.MaximumChances = maximumChances;
 		this.riddlesAmount = riddlesAmount;
+		this.riddlesFile = riddlesFile;
 		this.finalPassword = generatePassword(riddlesAmount);
 		this.unlockedPasswordParts = new Character[riddlesAmount];
 		this.riddles = generateRiddles(riddlesAmount);
@@ -86,7 +89,7 @@ public class EscapeRoom {
     	    
     	    try {
     			// convert JSON file to map
-    			inputMap = mapper.readValue(Paths.get("src/escapeRoom/GameLogic/riddles.json").toFile(), Map.class);
+    			inputMap = mapper.readValue(Paths.get("src/escapeRoom/GameLogic/" + this.riddlesFile).toFile(), Map.class);
 
     		} catch (Exception ex) {
     			ex.printStackTrace();
