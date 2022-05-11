@@ -182,9 +182,28 @@ public class EscapeRoom {
 	public String getDescription() {
 		return description;
 	}
+	
+	public Character[] getFinalPassword() {
+		return finalPassword;
+	}
+	
+	public String getFinalPasswordString() {
+		StringBuilder builder = new StringBuilder();
+		for (Character c : finalPassword)
+			builder.append(c);
+		return builder.toString();
+	}
 
 	public Character[] getUnlockedPasswordParts() {
 		return unlockedPasswordParts;
+	}
+	
+	public String getWinMessage() {
+		return winMessage;
+	}
+	
+	public String getGameOverMessage() {
+		return gameOverMessage;
 	}
 
 	public int getMaximumChances() {

@@ -32,38 +32,15 @@ public class Game {
 		this.title = title;
 		escapeRooms = new ArrayList<EscapeRoom>();
 		userInterface = new InOut();
-		Riddle firstRiddle = new Riddle("In which year did the corona-crisis beginn?", "2020", Difficulty.EASY);
-		Riddle secondRiddle = new Riddle("In which year did Russia attack Ukraeine?", "2022", Difficulty.EASY);
-		Riddle thirdRiddle = new Riddle("Which city is the capital of Germany?", "Berlin", Difficulty.EASY);
-		Riddle fourthRiddle = new Riddle("What does Bier mean?", "Beer", Difficulty.EASY);
-		Riddle fifthRiddle = new Riddle("What is your name?", "Masih", Difficulty.EASY);
-		Riddle sixthRiddle = new Riddle("Lqirupdwln", "Informatik", Difficulty.EASY);
-		Riddle seventhRiddle = new Riddle("Mdyd", "Java", Difficulty.EASY);
-		Riddle eightRiddle = new Riddle("Pdwkhpdwln", "Mathematik", Difficulty.MEDIUM);
-		Riddle ninthRiddle = new Riddle("Uhfkqhudufklwhnwxu", "Rechnerarchitektur", Difficulty.HARD);
-
-		ArrayList<Riddle> firstListOfRiddles = new ArrayList<Riddle>();
-		ArrayList<Riddle> secondListOfRiddles = new ArrayList<Riddle>();
-
-		firstListOfRiddles.add(firstRiddle);
-		firstListOfRiddles.add(secondRiddle);
-		firstListOfRiddles.add(thirdRiddle);
-		firstListOfRiddles.add(fourthRiddle);
-		firstListOfRiddles.add(fifthRiddle);
-
-		secondListOfRiddles.add(sixthRiddle);
-		secondListOfRiddles.add(seventhRiddle);
-		secondListOfRiddles.add(eightRiddle);
-		secondListOfRiddles.add(ninthRiddle);
 
 		EscapeRoom firstEscaoeRoom = new EscapeRoom(0, "General", "General questions", "You won!", "Game Over!",
-				"Casaer", 3, firstListOfRiddles);
+				6, 3, "riddles_1.json");
 
-		EscapeRoom secondEscaoeRoom = new EscapeRoom(1, "Computer Science", "CS related questions", "You won!",
-				"Game Over!", "Casaer", 3, secondListOfRiddles);
+		EscapeRoom secondEscapeRoom = new EscapeRoom(1, "Computer Science", "CS related questions", "You won!",
+				"Game Over!", 6, 3, "riddles_2.json");
 
 		escapeRooms.add(firstEscaoeRoom);
-		escapeRooms.add(secondEscaoeRoom);
+		escapeRooms.add(secondEscapeRoom);
 
 		userInterface.showTheTitle(title);
 		begin();
@@ -159,7 +136,7 @@ public class Game {
 			}
 		} else {
 			userInterface.showTheResultOfTheEscapeRoom(currentEscapeRoom.getWinMessage());
-			userInterface.showTheFinalPassword(currentEscapeRoom.getFinalPassword());
+			userInterface.showTheFinalPassword(currentEscapeRoom.getFinalPasswordString());
 			System.exit(0);
 		}
 

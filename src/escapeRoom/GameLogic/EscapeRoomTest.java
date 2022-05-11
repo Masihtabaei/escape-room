@@ -3,7 +3,7 @@ package escapeRoom.GameLogic;
 public class EscapeRoomTest {
 
 	public static void main(String[] args) {
-		EscapeRoom e = new EscapeRoom(1, "Room", "This is Room 1", "fetter W", "fettes L", 5, 2);
+		EscapeRoom e = new EscapeRoom(1, "Room", "This is Room 1", "fetter W", "fettes L", 5, 2, "riddles.json");
 
 		System.out.println(e.getId());
 		System.out.println(e.getTitle());
