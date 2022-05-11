@@ -1,10 +1,10 @@
-package escape_room;
+package escapeRoom.GameLogic;
 
 public class Riddle implements Comparable<Riddle> {
 
 	
 	protected String description;
-	protected String correctAnswer;
+	public String correctAnswer;
 	protected Difficulty difficulty;
 
 	public Riddle(String description, String correctAnswer, Difficulty difficulty) {
@@ -42,7 +42,12 @@ public class Riddle implements Comparable<Riddle> {
 	}
 	
 	public boolean tryAnswer (String answer) {
-		return false;
+		System.out.println(answer + "\t" + correctAnswer);
+		if (answer.equals(this.correctAnswer)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 //	public String getDescription() {
