@@ -33,13 +33,13 @@ public class Game {
 		escapeRooms = new ArrayList<EscapeRoom>();
 		userInterface = new InOut();
 
-		EscapeRoom firstEscaoeRoom = new EscapeRoom(0, "General", "General questions", "You won!", "Game Over!",
+		EscapeRoom firstEscapeRoom = new EscapeRoom(0, "General", "General questions", "You won!", "Game Over!",
 				6, 3, "riddles_1.json");
 
 		EscapeRoom secondEscapeRoom = new EscapeRoom(1, "Computer Science", "CS related questions", "You won!",
 				"Game Over!", 6, 3, "riddles_2.json");
 
-		escapeRooms.add(firstEscaoeRoom);
+		escapeRooms.add(firstEscapeRoom);
 		escapeRooms.add(secondEscapeRoom);
 
 		userInterface.showTheTitle(title);
@@ -100,8 +100,8 @@ public class Game {
 	 * @param answer
 	 * @return boolean
 	 */
-	private boolean checkTheAnswer(String answer) {
-		if (answer.equalsIgnoreCase(currentEscapeRoom.getCurrentRiddle().getCorrectAnswer()))
+	private boolean checkTheAnswer(Riddle r, String answer) {
+		if (currentEscapeRoom.tryRiddle(r, answer))
 			return true;
 		else
 			return false;
@@ -118,10 +118,11 @@ public class Game {
 		if (currentRiddle != null) {
 			userInterface.showTheRiddle(currentRiddle);
 			String answer = userInterface.promptForAnswer();
-			boolean isCorrect = checkTheAnswer(answer);
+			boolean isCorrect = checkTheAnswer(currentRiddle, answer);
 			if (isCorrect) {
 				userInterface.showTheResultOfAnAttempt("Congrat. Solved!");
-				currentEscapeRoom.getCurrentRiddle().setIsSolved(true);
+				currentRiddle.setIsSolved(true);
+				userInterface.showTheFinalPassword(currentEscapeRoom.getUnlockedPasswordPartsString());
 				playTheGame();
 			} else {
 				userInterface.showTheResultOfAnAttempt("Oops!");

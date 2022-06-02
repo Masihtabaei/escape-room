@@ -144,6 +144,7 @@ public class EscapeRoom {
 			if(i >= 0) {
 				this.unlockedPasswordParts[i] = this.finalPassword[i];
 			}
+			this.currentRiddleIndex++;
 			
 			 return true;
 			 
@@ -198,6 +199,18 @@ public class EscapeRoom {
 		return unlockedPasswordParts;
 	}
 	
+	public String getUnlockedPasswordPartsString() {
+		StringBuilder builder = new StringBuilder();
+		for (Character c : unlockedPasswordParts) {
+			if (c == null) {
+				builder.append("-");
+			} else {
+				builder.append(c);
+			}
+		}
+		return builder.toString();
+	}
+	
 	public String getWinMessage() {
 		return winMessage;
 	}
@@ -211,7 +224,13 @@ public class EscapeRoom {
 	}
 
 	public Riddle getCurrentRiddle() {
-		return riddles.get(currentRiddleIndex);
+		Riddle r = null;
+		try {
+			r = riddles.get(currentRiddleIndex);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			
+		}
+		return r;
 	}
 	
 	public void setCurrentRiddle(int currentRiddle) {

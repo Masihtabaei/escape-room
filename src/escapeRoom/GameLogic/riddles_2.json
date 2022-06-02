@@ -1,0 +1,32 @@
+{
+  "1" :
+  {
+    "description" : "Wer gilt als der größte Militär-Hack aller Zeiten?",
+    "correctAnswer" : "Gary McKinnon",
+    "difficulty" : "HARD"
+  },
+  "2" :
+  {
+    "description" : "Von welcher Firma nahm Steve Jobs die Idee für die grafische Benutzeroberfläche mit einer Maus?",
+    "correctAnswer" : "Xerox",
+    "difficulty" : "HARD"
+  },
+  "3" :
+  {
+    "description" : "Was war der erste Computervirus im DOS-System?",
+    "correctAnswer" : "(c)Brain",
+    "difficulty" : "HARD"
+  },
+  "4" :
+  {
+    "description" : "Welcher Firmenname ist keine Abkürzung, ACER oder IBM?",
+    "correctAnswer" : "ACER",
+    "difficulty" : "MEDIUM"
+  },
+  "5" :
+  {
+    "description" : "Wann wurde der erste Computer gebaut?",
+    "correctAnswer" : "1939",
+    "difficulty" : "MEDIUM"
+  }
+}
